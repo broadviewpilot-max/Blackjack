@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blackjack</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+    <h1>Blackjack</h1>
+    <div class="bank">Bankroll: $<span id="bankroll">1000</span></div>
+  </header>
+
+  <section class="table">
+    <div class="hand-label">Dealer <span id="dealer-score" class="score"></span></div>
+    <div id="dealer-hand" class="hand"></div>
+
+    <div id="message" class="message">Place your bet to begin.</div>
+
+    <div class="hand-label">You <span id="player-score" class="score"></span></div>
+    <div id="player-hand" class="hand"></div>
+  </section>
+
+  <section id="bet-panel" class="panel">
+    <div class="bet-line">Bet: $<span id="bet">0</span></div>
+    <div class="chips">
+      <button class="chip" data-v="5">5</button>
+      <button class="chip" data-v="25">25</button>
+      <button class="chip" data-v="100">100</button>
+      <button class="chip" data-v="500">500</button>
+    </div>
+    <div class="actions">
+      <button id="clear">Clear</button>
+      <button id="deal" class="primary">Deal</button>
+    </div>
+  </section>
+
+  <section id="play-panel" class="panel hidden">
+    <div class="actions">
+      <button id="hit" class="primary">Hit</button>
+      <button id="stand">Stand</button>
+      <button id="double">Double</button>
+    </div>
+  </section>
+
+  <footer>Cards via <a href="https://deckofcardsapi.com" target="_blank" rel="noopener">Deck of Cards API</a> · Dealer stands on 17 · Blackjack pays 3:2</footer>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
