@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blackjack</title>
+  <meta name="description" content="Play blackjack against the dealer, powered by the Deck of Cards API.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Blackjack</h1>
+      <div class="stats">
+        <span>Bankroll <strong>$<span id="bank">0</span></strong></span>
+        <span>Bet <strong>$<span id="bet">0</span></strong></span>
+      </div>
+    </header>
+
+    <section class="table" aria-live="polite">
+      <div class="hand">
+        <h2>Dealer <span id="dealer-total" class="total"></span></h2>
+        <div id="dealer-cards" class="cards"></div>
+      </div>
+      <p id="message"></p>
+      <div class="hand">
+        <h2>You <span id="player-total" class="total"></span></h2>
+        <div id="player-cards" class="cards"></div>
+      </div>
+    </section>
+
+    <section class="controls">
+      <div id="betting">
+        <div class="chips">
+          <button class="chip" data-v="5">5</button>
+          <button class="chip" data-v="25">25</button>
+          <button class="chip" data-v="100">100</button>
+          <button class="chip" data-v="500">500</button>
+        </div>
+        <div class="row">
+          <button id="clear" class="secondary">Clear</button>
+          <button id="deal" class="primary">Deal</button>
+        </div>
+      </div>
+      <div id="actions" class="row" hidden>
+        <button id="hit" class="primary">Hit <kbd>H</kbd></button>
+        <button id="stand" class="primary">Stand <kbd>S</kbd></button>
+        <button id="double" class="secondary">Double <kbd>D</kbd></button>
+      </div>
+      <div id="again" class="row" hidden><button class="primary" id="next">Next hand <kbd>Enter</kbd></button></div>
+      <button id="rebuy" class="secondary" hidden>Out of chips — restart with $1,000</button>
+    </section>
+
+    <footer>
+      <p>Blackjack pays 3:2 · Dealer stands on 17 · Double on first two cards · 6-deck shoe</p>
+      <p class="small">Shoe: <span id="shoe">—</span> · Cards by <a href="https://deckofcardsapi.com/" target="_blank" rel="noopener">Deck of Cards API</a></p>
+      <p class="small">For entertainment only — no real money.</p>
+    </footer>
+  </main>
+  <script src="game.js"></script>
+  <script src="deck.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
