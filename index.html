@@ -32,6 +32,7 @@
     <div id="app" hidden>
     <nav class="tabs" role="tablist">
       <button class="tab active" role="tab" data-tab="game" aria-selected="true">Play</button>
+      <button class="tab" role="tab" data-tab="stats" aria-selected="false">Stats</button>
       <button class="tab" role="tab" data-tab="profile" aria-selected="false">My Profile</button>
     </nav>
 
@@ -64,7 +65,43 @@
       </form>
     </section>
 
+    <section id="stats" hidden>
+      <div class="toolbar">
+        <label>Strategy
+          <select id="stats-filter"><option value="">All strategies</option></select>
+        </label>
+        <button id="stats-refresh" class="secondary">Refresh</button>
+        <button id="export-hands" class="secondary">Export hands (CSV)</button>
+        <button id="export-actions" class="secondary">Export decisions (CSV)</button>
+      </div>
+      <p id="stats-status" class="small" role="status"></p>
+      <div id="stats-body" hidden>
+        <div id="kpis" class="kpis"></div>
+        <div class="panel"><h3>What the data says</h3><ul id="insights"></ul></div>
+        <div class="panel">
+          <h3>Bankroll over time</h3>
+          <div id="chart" class="chart"></div>
+        </div>
+        <div class="panel"><h3>By strategy</h3><div id="t-strategy"></div></div>
+        <div class="panel"><h3>By dealer upcard</h3><p class="small">Cell shading shows return on money wagered: blue = winning, orange = losing, grey = break-even. Numbers are always shown.</p><div id="t-upcard"></div></div>
+        <div class="panel"><h3>By your starting hand</h3><div id="t-start"></div></div>
+        <div class="panel"><h3>By count (Hi-Lo true count at deal)</h3><div id="t-count"></div></div>
+        <div class="panel"><h3>Decisions</h3><div id="t-action"></div></div>
+        <div class="panel"><h3>Most common deviations from basic strategy</h3><div id="t-dev"></div></div>
+        <div class="panel"><h3>Recent hands</h3><div id="t-recent"></div></div>
+      </div>
+    </section>
+
     <div id="game" hidden>
+      <div class="strategy-row">
+        <label>Strategy being tested
+          <input id="strategy" list="strategy-list" maxlength="40" autocomplete="off">
+        </label>
+        <datalist id="strategy-list">
+          <option value="Manual"><option value="Basic strategy"><option value="Hi-Lo counting"><option value="Conservative"><option value="Aggressive">
+        </datalist>
+        <span id="save-status" class="small"></span>
+      </div>
     <section class="table" aria-live="polite">
       <div class="hand">
         <h2>Dealer <span id="dealer-total" class="total"></span></h2>
@@ -102,7 +139,7 @@
     </div>
 
     <footer>
-      <p>Blackjack pays 3:2 · Dealer stands on 17 · Double on first two cards · 6-deck shoe</p>
+      <p>Every hand and decision is recorded for your Stats page · Blackjack pays 3:2 · Dealer stands on 17 · Double on first two cards · 6-deck shoe</p>
       <p class="small">Shoe: <span id="shoe">—</span> · Cards by <a href="https://deckofcardsapi.com/" target="_blank" rel="noopener">Deck of Cards API</a></p>
       <p class="small">For entertainment only — no real money.</p>
     </footer>
@@ -110,8 +147,11 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
   <script src="game.js"></script>
   <script src="deck.js"></script>
+  <script src="analytics.js"></script>
+  <script src="tracker.js"></script>
   <script src="app.js"></script>
   <script src="profile.js"></script>
+  <script src="stats.js"></script>
   <script src="auth.js"></script>
 </body>
 </html>

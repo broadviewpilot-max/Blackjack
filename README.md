@@ -21,3 +21,16 @@ Deploy the repo root as-is; `netlify.toml` sets publish dir to `.` with no build
 Google sign-in via Supabase Auth. Signed-in users get a **My Profile** tab backed by `public.profiles`
 (display name, location, bio, favorite card). Row-level security: signed-in users can read profiles;
 each user can create/update/delete only their own row.
+
+## Play tracking & Stats
+Every hand and every decision is saved to Supabase for the signed-in user (tables `play_sessions`, `hands`,
+`hand_actions`; row-level security keeps each user's data private). Saves are queued locally and retried if offline.
+
+- **Strategy label:** type the strategy you're testing above the table; results are grouped by it.
+- **Recorded per hand:** cards, dealer upcard, bet, result, bankroll before/after, Hi-Lo running count and decks remaining at the deal.
+- **Recorded per decision:** action, hand state, what basic strategy recommends, whether you matched it, decision time.
+- **Stats tab:** KPIs, bankroll chart, breakdowns by strategy / dealer upcard / starting hand / count, deviations from basic strategy, auto-generated insights (sample-size guarded), and CSV export of hands and decisions for modelling.
+- Basic strategy here = multi-deck, dealer stands on 17, hit/stand/double only (no split or insurance).
+
+## Test
+    for t in game strategy analytics; do node tests/$t.test.js; done

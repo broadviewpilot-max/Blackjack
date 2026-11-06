@@ -31,9 +31,10 @@
   }
 
   class Shoe {
-    constructor() { this.deckId = null; this.local = null; this.remaining = 0; this.source = 'api'; }
+    constructor() { this.deckId = null; this.local = null; this.remaining = 0; this.source = 'api'; this.gen = 0; } // gen bumps whenever a fresh shoe starts
 
     async shuffle() {
+      this.gen++;
       try {
         const d = await getJSON(`${BASE}/new/shuffle/?deck_count=${DECK_COUNT}`);
         this.deckId = d.deck_id; this.remaining = d.remaining; this.local = null; this.source = 'api';
@@ -56,7 +57,7 @@
       } catch (e) {
         // Mid-hand API failure: switch to a local shoe rather than strand the player.
         console.warn('Draw failed, switching to local shoe:', e);
-        this.local = localShoe(DECK_COUNT); this.source = 'local'; this.deckId = null;
+        this.local = localShoe(DECK_COUNT); this.source = 'local'; this.deckId = null; this.gen++;
         return this.draw(count);
       }
     }

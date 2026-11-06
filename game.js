@@ -38,7 +38,37 @@
     return { result: 'lose', payout: 0 };
   }
 
-  const api = { cardValue, handTotal, isBlackjack, isBust, dealerShouldHit, settle };
+  // Hi-Lo card counting value: 2-6 => +1, 7-9 => 0, 10/J/Q/K/A => -1.
+  function hiLo(card) {
+    const v = cardValue(card);
+    return v >= 2 && v <= 6 ? 1 : v >= 7 && v <= 9 ? 0 : -1;
+  }
+
+  // Multi-deck, dealer-stands-on-17 basic strategy for the actions this game offers
+  // (hit / stand / double; no split or insurance). Returns 'hit' | 'stand' | 'double'.
+  // When doubling isn't allowed, "double" falls back to hit (or stand for soft 18).
+  function basicStrategy(cards, up, canDouble) {
+    const { total, soft } = handTotal(cards);
+    let a; // 'H','S','D' (double, else hit), 'Ds' (double, else stand)
+    if (soft && total >= 13) {
+      if (total <= 14) a = up >= 5 && up <= 6 ? 'D' : 'H';
+      else if (total <= 16) a = up >= 4 && up <= 6 ? 'D' : 'H';
+      else if (total === 17) a = up >= 3 && up <= 6 ? 'D' : 'H';
+      else if (total === 18) a = up >= 3 && up <= 6 ? 'Ds' : (up === 2 || up === 7 || up === 8) ? 'S' : 'H';
+      else a = 'S';
+    } else if (total >= 17) a = 'S';
+    else if (total >= 13) a = up <= 6 ? 'S' : 'H';
+    else if (total === 12) a = up >= 4 && up <= 6 ? 'S' : 'H';
+    else if (total === 11) a = up <= 10 ? 'D' : 'H';
+    else if (total === 10) a = up <= 9 ? 'D' : 'H';
+    else if (total === 9) a = up >= 3 && up <= 6 ? 'D' : 'H';
+    else a = 'H';
+    if (a === 'D') return canDouble ? 'double' : 'hit';
+    if (a === 'Ds') return canDouble ? 'double' : 'stand';
+    return a === 'S' ? 'stand' : 'hit';
+  }
+
+  const api = { cardValue, handTotal, isBlackjack, isBust, dealerShouldHit, settle, hiLo, basicStrategy };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.BJ = api;
 })(typeof window !== 'undefined' ? window : globalThis);

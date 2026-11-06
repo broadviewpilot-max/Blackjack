@@ -19,8 +19,8 @@
     document.querySelectorAll('.tab').forEach((t) => {
       const on = t.dataset.tab === name; t.classList.toggle('active', on); t.setAttribute('aria-selected', on);
     });
-    $('game').hidden = name !== 'game';
-    $('profile').hidden = name !== 'profile';
+    ['game', 'profile', 'stats'].forEach((n) => { $(n).hidden = n !== name; });
+    window.dispatchEvent(new CustomEvent('tab', { detail: name }));
   }
   document.querySelectorAll('.tab').forEach((t) => t.addEventListener('click', () => setTab(t.dataset.tab)));
 
