@@ -16,3 +16,8 @@ Browser blackjack built on the free [Deck of Cards API](https://deckofcardsapi.c
 
 ## Deploy (Netlify)
 Deploy the repo root as-is; `netlify.toml` sets publish dir to `.` with no build command.
+
+## Accounts & profiles
+Google sign-in via Supabase Auth. Signed-in users get a **My Profile** tab backed by `public.profiles`
+(display name, location, bio, favorite card). Row-level security: signed-in users can read profiles;
+each user can create/update/delete only their own row.

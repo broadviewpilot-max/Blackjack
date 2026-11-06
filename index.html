@@ -29,6 +29,41 @@
       <p id="auth-error" class="lose" role="alert"></p>
     </section>
 
+    <div id="app" hidden>
+    <nav class="tabs" role="tablist">
+      <button class="tab active" role="tab" data-tab="game" aria-selected="true">Play</button>
+      <button class="tab" role="tab" data-tab="profile" aria-selected="false">My Profile</button>
+    </nav>
+
+    <section id="profile" hidden>
+      <h2 id="profile-title">Create your profile</h2>
+      <p id="profile-intro" class="small">Tell other players a little about yourself.</p>
+      <form id="profile-form">
+        <label>Display name <span class="req">*</span>
+          <input id="p-name" maxlength="50" required autocomplete="name">
+        </label>
+        <label>Location
+          <input id="p-location" maxlength="80" placeholder="City, State">
+        </label>
+        <label>About me
+          <textarea id="p-bio" maxlength="280" rows="3" placeholder="Tell us about yourself"></textarea>
+          <span class="small"><span id="bio-count">0</span>/280</span>
+        </label>
+        <fieldset>
+          <legend>Favorite card</legend>
+          <div class="row">
+            <select id="p-rank" aria-label="Rank"></select>
+            <select id="p-suit" aria-label="Suit"></select>
+            <img id="p-card-preview" alt="" width="50" hidden>
+          </div>
+        </fieldset>
+        <div class="row">
+          <button type="submit" id="p-save" class="primary">Save profile</button>
+        </div>
+        <p id="profile-msg" role="status"></p>
+      </form>
+    </section>
+
     <div id="game" hidden>
     <section class="table" aria-live="polite">
       <div class="hand">
@@ -64,6 +99,7 @@
       <button id="rebuy" class="secondary" hidden>Out of chips — restart with $1,000</button>
     </section>
     </div>
+    </div>
 
     <footer>
       <p>Blackjack pays 3:2 · Dealer stands on 17 · Double on first two cards · 6-deck shoe</p>
@@ -75,6 +111,7 @@
   <script src="game.js"></script>
   <script src="deck.js"></script>
   <script src="app.js"></script>
+  <script src="profile.js"></script>
   <script src="auth.js"></script>
 </body>
 </html>

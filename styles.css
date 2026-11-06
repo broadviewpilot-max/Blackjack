@@ -40,3 +40,15 @@ a { color:var(--gold); }
 #userbar button { padding:6px 12px; min-height:36px; }
 .login { text-align:center; margin:48px 0; padding:32px 16px; border:2px solid rgba(232,195,90,.5); border-radius:16px; background:rgba(0,0,0,.15); }
 .login .lose { color:#ff9c9c; min-height:1.4em; }
+.tabs { display:flex; gap:8px; margin:12px 0; }
+.tab { background:rgba(255,255,255,.12); color:var(--ink); border-radius:10px 10px 0 0; }
+.tab.active { background:var(--gold); color:#222; font-weight:700; }
+#profile { margin:16px 0; padding:20px; border:2px solid rgba(232,195,90,.5); border-radius:16px; background:rgba(0,0,0,.15); max-width:520px; }
+#profile form { display:flex; flex-direction:column; gap:14px; }
+#profile label, #profile legend { display:flex; flex-direction:column; gap:4px; font-weight:600; }
+#profile fieldset { border:0; padding:0; margin:0; }
+#profile input, #profile textarea, #profile select { font:inherit; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,.3); background:rgba(255,255,255,.95); color:#111; width:100%; }
+#profile .row { justify-content:flex-start; align-items:center; margin:4px 0; }
+#profile .row select { width:auto; flex:1; }
+.req { color:var(--gold); }
+#profile-msg.win { color:var(--gold); } #profile-msg.lose { color:#ff9c9c; }

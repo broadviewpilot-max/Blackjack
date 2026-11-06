@@ -9,8 +9,9 @@
 
   function show(user) {
     const signedIn = !!user;
+    window.dispatchEvent(new CustomEvent('auth', { detail: { user, sb } }));
     $('login').hidden = signedIn;
-    $('game').hidden = !signedIn;
+    $('app').hidden = !signedIn;
     $('userbar').hidden = !signedIn;
     if (!signedIn) return;
     const m = user.user_metadata || {};
