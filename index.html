@@ -11,12 +11,25 @@
   <main>
     <header>
       <h1>Blackjack</h1>
+      <div id="userbar" hidden>
+        <img id="avatar" alt="" width="40" height="40" hidden>
+        <span id="greeting"></span>
+        <button id="logout" class="secondary">Sign out</button>
+      </div>
       <div class="stats">
         <span>Bankroll <strong>$<span id="bank">0</span></strong></span>
         <span>Bet <strong>$<span id="bet">0</span></strong></span>
       </div>
     </header>
 
+    <section id="login" class="login">
+      <h2>Sign in to play</h2>
+      <p>Use your Google account to sit down at the table.</p>
+      <button id="google-login" class="primary">Sign in with Google</button>
+      <p id="auth-error" class="lose" role="alert"></p>
+    </section>
+
+    <div id="game" hidden>
     <section class="table" aria-live="polite">
       <div class="hand">
         <h2>Dealer <span id="dealer-total" class="total"></span></h2>
@@ -50,6 +63,7 @@
       <div id="again" class="row" hidden><button class="primary" id="next">Next hand <kbd>Enter</kbd></button></div>
       <button id="rebuy" class="secondary" hidden>Out of chips — restart with $1,000</button>
     </section>
+    </div>
 
     <footer>
       <p>Blackjack pays 3:2 · Dealer stands on 17 · Double on first two cards · 6-deck shoe</p>
@@ -57,8 +71,10 @@
       <p class="small">For entertainment only — no real money.</p>
     </footer>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
   <script src="game.js"></script>
   <script src="deck.js"></script>
   <script src="app.js"></script>
+  <script src="auth.js"></script>
 </body>
 </html>

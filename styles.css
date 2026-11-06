@@ -33,3 +33,10 @@ footer { text-align:center; margin-top:24px; opacity:.85; } .small { font-size:.
 a { color:var(--gold); }
 @media (max-width:480px) { .card { width:72px; height:101px; margin-right:-28px; } .cards { min-height:110px; } kbd { display:none; } }
 @media (prefers-reduced-motion:reduce) { .card { animation:none; } }
+#userbar { display:flex; align-items:center; gap:10px; }
+#userbar[hidden], [hidden] { display:none !important; }
+#avatar { border-radius:50%; border:2px solid var(--gold); object-fit:cover; }
+#greeting { font-weight:600; }
+#userbar button { padding:6px 12px; min-height:36px; }
+.login { text-align:center; margin:48px 0; padding:32px 16px; border:2px solid rgba(232,195,90,.5); border-radius:16px; background:rgba(0,0,0,.15); }
+.login .lose { color:#ff9c9c; min-height:1.4em; }
